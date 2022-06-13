@@ -13,6 +13,8 @@ public class RegisterUserPage {
 
 	private WebDriver driver;
 	private ElementUtil eu;
+
+	// Git Hub Test
 	
 	private By firstName = By.id("input-firstname");
 	private By lastName = By.id("input-lastname");
