@@ -31,5 +31,7 @@ public class SearchResultsPage {
 		eu.doClick(productNameLink);
 		return new ProductInfoPage(driver);
 	}
+	
+	//Additional GIT Data
 
 }
