@@ -26,6 +26,8 @@ public class ProductInfoPage {
 	private By successMessage=By.cssSelector("div.alert.alert-success");
 	private By cart=By.cssSelector("div#cart button.dropdown-toggle");
 	
+	// Chinmay Data for GIT
+	
 	Map<String, String> productInfoMap;
 	
 	public ProductInfoPage(WebDriver driver) 
