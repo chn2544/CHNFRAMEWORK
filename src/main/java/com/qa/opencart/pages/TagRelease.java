@@ -6,6 +6,7 @@ public class TagRelease {
 		// TODO Auto-generated method stub
 		
 		System.out.println("V1");
+		System.out.println("V5.1");
 
 	}
 
