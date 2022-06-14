@@ -8,6 +8,8 @@ public class Feature1 {
 		System.out.println("Feature 1 class");
 		
 		System.out.println("This is for new version of feature 1");
+		
+		System.out.println("This is for final version of feature 1");
 
 	}
 
