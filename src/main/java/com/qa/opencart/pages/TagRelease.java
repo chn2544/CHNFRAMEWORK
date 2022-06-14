@@ -7,6 +7,7 @@ public class TagRelease {
 		
 		System.out.println("V1");
 		System.out.println("V5.1");
+		System.out.println("V5.2");
 
 	}
 
