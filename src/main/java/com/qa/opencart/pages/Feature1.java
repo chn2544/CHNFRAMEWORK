@@ -6,6 +6,8 @@ public class Feature1 {
 		// TODO Auto-generated method stubo
 		
 		System.out.println("Feature 1 class");
+		
+		System.out.println("This is for new version of feature 1");
 
 	}
 
