@@ -8,6 +8,7 @@ public class TestStash {
 		
 		int a=200;
 		
+		int finalcode=900;
 		
 	}
 
