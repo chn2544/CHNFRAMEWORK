@@ -168,7 +168,7 @@ public class AccountsPageTest extends BaseTest {
 			{"MacBook", "MacBook Pro","Name","MacBook Pro"},
 			{"Apple", "Apple Cinema 30\"","Brand","Apple"},
 			{"Samsung","Samsung Galaxy Tab 10.1","price","$2,000.00"},            // failing condition
-			{"iMac","iMac","price","$154.00"}                                     // failing condition 
+			{"iMac","iMac","price","$122.00"}                                     // failing condition    //correct 122 , wrong 154
 		};
 	}
 	
