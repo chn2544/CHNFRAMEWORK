@@ -55,7 +55,7 @@ pipeline{
           
           stage("Deploy on Prod"){
             steps{
-                echo("Deploy to Production Environment")
+                echo("-- Coming from Eclipse IDE - Deploy to Production Environment")
             }
           }
           
