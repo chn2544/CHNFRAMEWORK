@@ -1,0 +1,67 @@
+pipeline{
+    
+    agent any
+    
+    stages {
+        
+        stage("Build"){
+            steps{
+                echo("Build the Project")
+            }
+        }
+    
+        stage("Run UT"){
+            steps{
+                echo("Run Unit Leves Test Cases")
+            }
+        }
+        
+          stage("Run SIT"){
+            steps{
+                echo("Run System Integration Test Cases")
+            }
+          }
+          
+             stage("Deploy to DEV"){
+            steps{
+                echo("Deploy to Dev Environment")
+            }
+          }
+          
+            stage("Deploy to QA"){
+            steps{
+                echo("Deploy to QA Environment")
+            }
+          }
+          
+            stage("Run Test on QA"){
+            steps{
+                echo("Run Sanity Test Cases for Auomtation on QA")
+            }
+          }
+          
+          
+            stage("Deploy on Stage"){
+            steps{
+                echo("Deploy to Stage Environment")
+            }
+          }
+          
+           stage("Run Test on Stage"){
+            steps{
+                echo("Run Sanity Test Cases for Auomtation on Stage Env")
+            }
+          }
+          
+          stage("Deploy on Prod"){
+            steps{
+                echo("Deploy to Production Environment")
+            }
+          }
+          
+    }
+    
+    
+    
+    
+}
