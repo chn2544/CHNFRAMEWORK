@@ -24,8 +24,8 @@ public class LoginPage {
 	private By RegisterLink=By.linkText("Register");
 	private By logoutvalidation=By.cssSelector("div #content h1");
 	
-	private By chnloc=By.cssSelector("Chinmay_For_GIT");
-	
+//	private By chnloc=By.cssSelector("Chinmay_For_GIT");
+	private By ngrok=By.cssSelector("This is to test NGROK");
 
 	//2. Page Class Constructor
 	
