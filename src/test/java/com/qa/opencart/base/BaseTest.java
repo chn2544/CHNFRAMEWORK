@@ -1,6 +1,24 @@
 package com.qa.opencart.base;
 
+import java.io.File;
+import java.io.PrintStream;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.file.Paths;
+import java.util.Date;
+import java.util.Properties;
 
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.asserts.SoftAssert;
+import java.io.ByteArrayOutputStream;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
@@ -13,53 +31,22 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import com.amazonaws.services.simpleemail.model.RawMessage;
 import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
 import com.qa.opencart.factory.DriverFactory;
-import com.qa.opencart.pages.*;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.asserts.SoftAssert;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.PrintStream;
-import java.net.URL;
-import java.nio.ByteBuffer;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.nio.file.Paths;
-import java.util.Properties;
-
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.asserts.SoftAssert;
-
-import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.pages.AccountsPage;
 import com.qa.opencart.pages.LoginPage;
 import com.qa.opencart.pages.ProductInfoPage;
 import com.qa.opencart.pages.RegisterUserPage;
 import com.qa.opencart.pages.SearchResultsPage;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import javax.mail.Transport;
+import javax.mail.Message;
+import javax.mail.MessagingException;
 
 public class BaseTest {
 	
-	private static String SENDER = "sagarj1210@gmail.com";
+	private static String SENDER = "crgogte99@gmail.com";
 	private static String RECIPIENT = "crgogte99@gmail.com";
-	private static String SUBJECT = "CHN OPEN CART Test Execution Report " 
+	private static String SUBJECT = "CHN OPEN CART Test Execution Report "
 			+ LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 	private static String BODY_TEXT = "Please click on this latest Test Execution Report link:";
 
@@ -104,7 +91,7 @@ public class BaseTest {
 	public void sendTestReports() {
 
 		// Pass the name of the S3 bucket
-		String bucket_name = "chnbucket1210";
+		String bucket_name = "chn1210bucket";
 		// Location of the report file from the project structure
 		String file_path = "build/TestExecutionReport.html";
 		String key_name = Paths.get(file_path).getFileName().toString();
