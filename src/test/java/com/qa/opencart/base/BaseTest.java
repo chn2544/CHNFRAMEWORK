@@ -24,7 +24,9 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -95,7 +97,7 @@ public class BaseTest {
 	public void sendTestReports() {
 
 		// Pass the name of the S3 bucket
-		String bucket_name = "chnnewbucket";
+		String bucket_name = "chnbucket1210";
 		// Location of the report file from the project structure
 		String file_path = "build/TestExecutionReport.html";
 		String key_name = Paths.get(file_path).getFileName().toString();
@@ -103,7 +105,8 @@ public class BaseTest {
 		// Instantiate an Amazon S3 client, which will make the service call with the
 		// supplied AWS credentials.
 
-		 final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new
+		
+		  final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new
 		  ProfileCredentialsProvider()) .withRegion(Regions.AP_SOUTH_1).build();
 		 
 
