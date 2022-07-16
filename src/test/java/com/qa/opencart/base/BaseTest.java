@@ -95,7 +95,7 @@ public class BaseTest {
 	public void sendTestReports() {
 
 		// Pass the name of the S3 bucket
-		String bucket_name = "chnbucket1210";
+		String bucket_name = "chnnewbucket";
 		// Location of the report file from the project structure
 		String file_path = "build/TestExecutionReport.html";
 		String key_name = Paths.get(file_path).getFileName().toString();
