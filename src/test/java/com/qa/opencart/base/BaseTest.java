@@ -99,13 +99,14 @@ public class BaseTest {
 
 		// Instantiate an Amazon S3 client, which will make the service call with the
 		// supplied AWS credentials.
+	
+		 final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
+				 .withRegion(Regions.AP_SOUTH_1).build();
+		 
 		/*
-		 * final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new
-		 * ProfileCredentialsProvider()) .withRegion(Regions.AP_SOUTH_1).build();
+		 * AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+		 * .withCredentials(DefaultAWSCredentialsProviderChain.getInstance()) .build();
 		 */
-		  AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                  .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
-                  .build();
 
 		// Upload the report to S3 bucket
 		try {
