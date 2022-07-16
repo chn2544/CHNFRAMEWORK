@@ -21,6 +21,8 @@ import org.testng.asserts.SoftAssert;
 import java.io.ByteArrayOutputStream;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
@@ -45,76 +47,66 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 
 public class BaseTest {
-	
+
 	private static String SENDER = "crgogte99@gmail.com";
 	private static String RECIPIENT = "crgogte99@gmail.com";
 	private static String SUBJECT = "CHN OPEN CART Test Execution Report "
 			+ LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 	private static String BODY_TEXT = "Please click on this latest Test Execution Report link:";
 
-	public DriverFactory df;   // Creating Ref Object of DriverFactory as we need methods of it in 
-							   // Base Class	
+	public DriverFactory df; // Creating Ref Object of DriverFactory as we need methods of it in
+								// Base Class
 	public WebDriver driver;
 	public Properties prop;
-	
-	protected LoginPage lp;       // Creating Ref Obj of LoginPage and we will pass driver of this class in constructor
+
+	protected LoginPage lp; // Creating Ref Obj of LoginPage and we will pass driver of this class in
+							// constructor
 	protected AccountsPage ap;
 	protected SearchResultsPage srp;
 	protected ProductInfoPage pi;
 	protected RegisterUserPage rp;
-	
-	public SoftAssert sa;     // SoftAssert is class from TestNg to use for Soft Assertions
-	
-	@Parameters({"browser", "browserversion"})
+
+	public SoftAssert sa; // SoftAssert is class from TestNg to use for Soft Assertions
+
+	@Parameters({ "browser", "browserversion" })
 	@BeforeTest
-	public void setup(String browser, String browserversion)  // this variables are set with values coming from xml
+	public void setup(String browser, String browserversion) // this variables are set with values coming from xml
 	{
-		df=new DriverFactory();
-		prop=df.init_prop_config_file();     //     taking properties in local variable
-		if(browser!=null)										// Here we are updating browser and browserversion values
-		{														// in prop file if browser is coming from xml
+		df = new DriverFactory();
+		prop = df.init_prop_config_file(); // taking properties in local variable
+		if (browser != null) // Here we are updating browser and browserversion values
+		{ // in prop file if browser is coming from xml
 			prop.setProperty("browser", browser);
 			prop.setProperty("browserversion", browserversion);
-			
+
 		}
-		
-		driver=df.init_driver(prop);
-		lp=new LoginPage(driver);
-		sa=new SoftAssert();
+
+		driver = df.init_driver(prop);
+		lp = new LoginPage(driver);
+		sa = new SoftAssert();
 	}
-	
+
 	@AfterTest
-	public void tearDown()
-	{
+	public void tearDown() {
 		driver.quit();
 	}
-	
+
 	@AfterSuite
 	public void sendTestReports() {
 
 		// Pass the name of the S3 bucket
-		String bucket_name = "chn1210bucket";
+		String bucket_name = "chnbucket1210";
 		// Location of the report file from the project structure
 		String file_path = "build/TestExecutionReport.html";
 		String key_name = Paths.get(file_path).getFileName().toString();
 
 		// Instantiate an Amazon S3 client, which will make the service call with the
 		// supplied AWS credentials.
-	
-		/*
-		 * final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new
-		 * ProfileCredentialsProvider()) .withRegion(Regions.AP_SOUTH_1).build();
-		 */
+
+		 final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new
+		  ProfileCredentialsProvider()) .withRegion(Regions.AP_SOUTH_1).build();
 		 
-		/*
-		 * AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-		 * .withCredentials(DefaultAWSCredentialsProviderChain.getInstance()) .build();
-		 */
-		 
-		 AmazonS3 s3 = AmazonS3ClientBuilder.standard()                  
-                 .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
-                 .build();
-		 
+
 		// Upload the report to S3 bucket
 		try {
 			s3.putObject(bucket_name, key_name, new File(file_path));
@@ -170,5 +162,5 @@ public class BaseTest {
 			ex.printStackTrace();
 		}
 	}
-	
+
 }
