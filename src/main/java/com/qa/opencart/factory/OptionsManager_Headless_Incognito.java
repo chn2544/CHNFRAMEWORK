@@ -18,14 +18,23 @@ public class OptionsManager_Headless_Incognito {
 	
 	public ChromeOptions getChromeOptions()
 	{
+		// These are capabilities which we are taking in driverfactory
 		co=new ChromeOptions();
+		
+		if(Boolean.parseBoolean(prop.getProperty("remote")))          // true will come as string, so we need to convert to boolean with wrapper class
+		{
+		co.setCapability("enableVNC",Boolean.parseBoolean(prop.getProperty("enableVNC")));
+		// key and value  - capabilityname and value
+		co.setBrowserVersion(prop.getProperty("browserversion"));  // added this while running on aws selenoid
+		}
+		
 		if(Boolean.parseBoolean(prop.getProperty("headless")))          // true will come as string, so we need to convert to boolean with wrapper class
 		{
 		co.setHeadless(true);
 		}
 		if(Boolean.parseBoolean(prop.getProperty("incognito")))
 		{
-			co.addArguments("--incognito");
+		co.addArguments("--incognito");
 		}
 		return co;
 	}
@@ -33,6 +42,14 @@ public class OptionsManager_Headless_Incognito {
 	public FirefoxOptions getFireFoxOptions()
 	{
 		fo=new FirefoxOptions();
+		
+		if(Boolean.parseBoolean(prop.getProperty("remote")))          // true will come as string, so we need to convert to boolean with wrapper class
+		{
+		fo.setCapability("enableVNC",Boolean.parseBoolean(prop.getProperty("enableVNC")));
+		// key and value  - capabilityname and value
+		fo.setBrowserVersion(prop.getProperty("browserversion"));
+		}
+		
 		if(Boolean.parseBoolean(prop.getProperty("headless")))          // true will come as string, so we need to convert to boolean with wrapper class
 		{
 		fo.setHeadless(true);
