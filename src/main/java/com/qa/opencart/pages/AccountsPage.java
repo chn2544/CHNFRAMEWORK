@@ -24,6 +24,7 @@ public class AccountsPage {
 	 private By section_headers=By.cssSelector("div#content h2");
 	 private By search_feild=By.name("search");
 	 private By search_button=By.cssSelector("div #search button");
+	 private By search_button1=By.cssSelector("div #search button");
 	
 	
 	public AccountsPage(WebDriver driver) 
